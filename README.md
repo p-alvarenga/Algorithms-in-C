@@ -9,7 +9,7 @@ The Algorithms are divided by directories following a very simple structure, as 
   Algorithms in C
     |
     ├── Algorithm A
-    │   ├── algorithm-b.c
+    │   ├── algorithm-a.c
     │   ├── library.h  
     │   ├── performance-analysis
     │   │   ├── data.txt
