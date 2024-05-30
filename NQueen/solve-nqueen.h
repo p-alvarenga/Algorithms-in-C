@@ -33,7 +33,9 @@ bool verifyPosition(char board[N][N], int x, int y)
 	for (int i = 0; i < N; i++)
 	{
 		if (board[x][i] == QUEEN_CHAR || board[i][y] == QUEEN_CHAR)
-			return false;			
+		{
+			return false;
+		}
 	}
 
 	for (int i = 0; i < N; i++)
