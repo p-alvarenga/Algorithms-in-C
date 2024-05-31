@@ -1,6 +1,8 @@
-# Algorithms in C
+<h1 align="center">Algoritms in C</h1>
 
-### This repository showcases various algorithms for famous algorithms
+<h3 align="center">This repository showcases various algorithms for famous algorithms</h3>
+
+<br/>
 
 The Algorithms are divided by directories following a very simple structure, as outlined below: 
 
