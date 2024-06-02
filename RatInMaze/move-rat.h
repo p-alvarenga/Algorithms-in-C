@@ -29,7 +29,7 @@ bool moveRat(char maze[N][M], struct Pos *rat, int direction)
 				rat->y++;
 				return true;
 			}
-
+	
 			break;
 
 		case DOWN: 
@@ -50,7 +50,6 @@ bool moveRat(char maze[N][M], struct Pos *rat, int direction)
 
 			break;
 	}
-
 
 	return false;
 }
