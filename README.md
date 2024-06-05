@@ -4,7 +4,8 @@
 
 <br/>
 
-The Algorithms are divided by directories following a very simple structure, as outlined below: 
+> [!Note]
+> The Algorithms are divided by directories following a very simple structure, as outlined below: 
 
 ```
 
