@@ -3,25 +3,20 @@
 This Algorithm uses mainly backtracking to solve and its one of the easiest backtracking programns to do.
 It is not a scalable program, therefore, it does not have performance analysis.
 
-To execute your own maze, you need to change a bit of the code:
+> [!IMPORTANT]
+> To execute your own custom maze, you need to change the following code snippets in order to match your maze
 
-```cpp
-#define N ?
-#define M ?
-```
 
-the maze is declared such as char maze[N][M], so, it depends on the maze you want to solve
+<br>
 
-You can change the characters on the:
+#### Change `char maze[N][M]` size
 
 ```cxx
-#define START_CHAR ?
-#define END_CHAR ?
-#define EMPTY_CHAR ?
-#define BLOCK_CHAR ?
+#define N 10
+#define M 20 
 ```
 
-Just replace the '?' with the respective character. By default, the constants are:
+#### Change `char maze[N][M]` describe characters
 
 ```cxx
 #define START_CHAR 'S'
@@ -30,10 +25,10 @@ Just replace the '?' with the respective character. By default, the constants ar
 #define BLOCK_CHAR '#'
 ```
 
-And then, change the maze itself, it is declared inside the main function, but feel free to use the functions as you like.
+And then, change the **maze itself**, it is declared inside the `main()`. feel free to use the functions as you like `:)`
 
 <br/>
-<hr>
+
 <h3 align="center">Explaining the <code>struct-pos.h</code> file</h3>
 
 To make the functions more clear and readable, I defined a simple structure:
@@ -45,13 +40,13 @@ struct Pos
 };
 ```
 
-Therefore, I do not need to pass the int `pos_x` and int `pos_y` to the function, I only pass the structure itself.
-
-Inside the file, there is two functions: `bool verifyPosRange(int pos_x, int pos_y)` and `void defineStartEnd(char maze[N][M], struct Pos *start_pos, struct Pos *end_pos)`. The first function is simple, it only verifies if: 
+Inside the file there is two functions: `bool verifyPosRange(int pos_x, int pos_y)` and `void defineStartEnd(char maze[N][M], struct Pos *start_pos, struct Pos *end_pos)`. The first function is simple, it only verifies if: 
 
 <p align="center"> $pos_x ∈ [0, N[$ and $pos_y ∈ [0, M[$</p>
 
 The second function is as simple as the first, it only finds the end position and the start position based on the pre-defined characters
+
+<br/>
 
 <h3 align="center">Explaining the <code>move-rat.h</code> file</h3>
 
