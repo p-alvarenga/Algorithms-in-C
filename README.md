@@ -1,6 +1,6 @@
 <h1 align="center">Algoritms in C</h1>
 
-<h3 align="center">This repository showcases various algorithms for famous algorithms</h3>
+<h3 align="center">This repository showcases various algorithms for famous problems/puzzles</h3>
 
 <br/>
 
