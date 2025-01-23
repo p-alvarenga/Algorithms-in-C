@@ -4,7 +4,7 @@
 
 <br/>
 
-> [!Note]
+> [!Important]
 > The Algorithms are divided by directories following a very simple structure, as outlined below: 
 
 ```
