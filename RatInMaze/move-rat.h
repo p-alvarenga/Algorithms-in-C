@@ -1,10 +1,12 @@
 #ifndef MOVE_RAT_H
 #define MOVE_RAT_H
 
-#define	UP 0
-#define	RIGHT 1
-#define	DOWN 2
-#define	LEFT 3
+//#define	UP    0
+//#define	RIGHT 1
+//#define	DOWN  2
+//#define	LEFT  3
+
+enum MOVE_POS { UP, RIGHT, DOWN, LEFT }; 
 
 bool moveRat(char maze[N][M], struct Pos *rat, int direction);
 bool checkSquareOnDirection(char maze[N][M], struct Pos pos, int direction);

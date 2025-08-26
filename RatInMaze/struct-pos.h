@@ -6,15 +6,9 @@ struct Pos
 	int x, y;	
 };
 
-
 inline bool verifyPosRange(int pos_x, int pos_y)
 {	
-	if ((pos_x < N && pos_y < M) && (pos_x >= 0 && pos_y >= 0))
-	{
-		return true;
-	}
-
-	return false;
+	return (pos_x < N && pos_y < M) && (pos_x >= 0 && pos_y >= 0);
 }	
 
 void defineStartEnd(char maze[N][M], struct Pos *start_pos, struct Pos *end_pos)
@@ -35,8 +29,6 @@ void defineStartEnd(char maze[N][M], struct Pos *start_pos, struct Pos *end_pos)
 			}
 		}
 	}
-
-	return;
 }
 
 #endif
