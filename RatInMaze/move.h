@@ -8,24 +8,24 @@
 
 enum MOVE_POS { UP, RIGHT, DOWN, LEFT }; 
 
-bool checkSquareOnDirection(char maze[N][M], struct Pos pos, int dir)
+bool check_square_on_dir(char maze[N][M], Pos pos, int dir)
 {
 	switch (dir)
 	{
 		case UP:
-			if (!verifyPosRange(pos.x - 1, pos.y + 1)) return false; 
+			if (!valid_range(pos.x - 1, pos.y + 1)) return false; 
 			return maze[pos.x - 1][pos.y] == EMPTY_CHAR || maze[pos.x - 1][pos.y] == END_CHAR;	
 
 		case RIGHT: 
-			if (!verifyPosRange(pos.x, pos.y + 1)) return false; 
+			if (!valid_range(pos.x, pos.y + 1)) return false;
 			return maze[pos.x][pos.y + 1] == EMPTY_CHAR || maze[pos.x][pos.y + 1] == END_CHAR;	
 
 		case DOWN:
-			if (!verifyPosRange(pos.x + 1, pos.y)) return false; 
+			if (!valid_range(pos.x + 1, pos.y)) return false; 
 			return maze[pos.x + 1][pos.y] == EMPTY_CHAR || maze[pos.x + 1][pos.y] == END_CHAR;	
 	
 		case LEFT: 
-			if (!verifyPosRange(pos.x, pos.y - 1)) return false; 
+			if (!valid_range(pos.x, pos.y - 1)) return false; 
 			return maze[pos.x][pos.y - 1] == EMPTY_CHAR || maze[pos.x][pos.y - 1] == END_CHAR;
 	}
 
@@ -33,30 +33,28 @@ bool checkSquareOnDirection(char maze[N][M], struct Pos pos, int dir)
 	return false;
 }
 
-bool move_rat(char maze[N][M], struct Pos* rat, int dir)
+Pos move_rat(char maze[N][M], Pos rat, int dir)
 {
-	if (!checkSquareOnDirection(maze, *rat, dir)) return false;
-
 	switch (dir)
 	{
 		case UP:
-			rat->x--;
+			rat.x--;
 			break;
 
 		case RIGHT:
-			rat->y++;
+			rat.y++;
 			break;
 
 		case DOWN: 
-			rat->x++;
+			rat.x++;
 			break;
 
 		case LEFT: 
-			rat->y--;
+			rat.y--;
 			break;
 	}
 
-	return true;
+	return rat; 
 }
 
 

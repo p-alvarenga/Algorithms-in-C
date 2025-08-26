@@ -1,17 +1,17 @@
 #ifndef STRUCT_POS_H
 #define STRUCT_POS_H
 
-struct Pos 
+typedef struct 
 {
 	int x, y;	
-};
+} Pos;
 
-bool verifyPosRange(int pos_x, int pos_y)
+bool valid_range(int x, int y)
 {	
-	return (pos_x < N && pos_y < M) && (pos_x >= 0 && pos_y >= 0);
+	return (x < N && y < M) && (x >= 0 && y >= 0);
 }	
 
-void defineStartEnd(char maze[N][M], struct Pos *start_pos, struct Pos *end_pos)
+void defineStartEnd(char maze[N][M], Pos *start_pos, Pos *end_pos)
 {
 	for (int i = 0; i < N; i++)
 	{

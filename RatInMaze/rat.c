@@ -10,15 +10,17 @@
 #define BLOCK_CHAR '#'
 
 #include "./pos.h"
-#include "./move.h"
+#include "./move.h" 
 
-bool solve_maze(char maze[N][M], struct Pos rat, struct Pos end_pos);
+bool solve_maze(char maze[N][M], Pos rat, Pos* end_pos);
 void print_maze(char maze[N][M]);
 
 int main (void)
 {
-	struct Pos init_rat;
-	struct Pos end_pos;
+	Pos init_rat;
+	Pos *end_pos;
+
+	//printf("%d", sizeof(Pos*));
 
 	char maze[N][M] = 
 	{
@@ -34,31 +36,29 @@ int main (void)
     	{'#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#'}
 	};
 
-	defineStartEnd(maze, &init_rat, &end_pos);
+	defineStartEnd(maze, &init_rat, end_pos);
 	solve_maze(maze, init_rat, end_pos);
 	print_maze(maze);
 
 	return 0;
 }
 
-bool solve_maze(char maze[N][M], struct Pos rat, struct Pos end_pos)
+bool solve_maze(char maze[N][M], Pos rat, Pos* end)
 {
-	struct Pos next_step;
+	Pos n_rat;
 
-	if (rat.x == end_pos.x && rat.y == end_pos.y)
-		return true;
+	if (rat.x == end->x && rat.y == end->y) return true;
 
-	for (int dir = 0; dir <= 3; dir++)
+	for (int dir = 0; dir < 4; dir++)
 	{
-		if (checkSquareOnDirection(maze, rat, dir))
+		if (check_square_on_dir(maze, rat, dir))
 		{
-			next_step = rat;
+			n_rat = rat;
 
-			move_rat(maze, &next_step, dir);
-
+			n_rat = move_rat(maze, n_rat, dir);
 			maze[rat.x][rat.y] = '.';
 
-			if (solve_maze(maze, next_step, end_pos))
+			if (solve_maze(maze, n_rat, end))
 			{
 				return true;
 			}
