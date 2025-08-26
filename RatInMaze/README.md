@@ -51,7 +51,7 @@ The second function is as simple as the first, it only finds the end position an
 
 <p>The code on <code>move-rat.h</code>code> is simple, the main idea is to make it easier to manage the different directions that the rat can move, using a clockwise system, starting on 0, as follows: </p>
 
-```cxx
+```c
 #define	UP    0
 #define	RIGHT 1
 #define	DOWN  2
