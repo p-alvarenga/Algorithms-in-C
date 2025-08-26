@@ -6,7 +6,7 @@ struct Pos
 	int x, y;	
 };
 
-inline bool verifyPosRange(int pos_x, int pos_y)
+bool verifyPosRange(int pos_x, int pos_y)
 {	
 	return (pos_x < N && pos_y < M) && (pos_x >= 0 && pos_y >= 0);
 }	

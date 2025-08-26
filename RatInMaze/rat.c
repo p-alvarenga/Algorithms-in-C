@@ -5,17 +5,15 @@
 #define M 20
 
 #define START_CHAR 'S'
-#define END_CHAR 'E'
+#define END_CHAR   'E'
 #define EMPTY_CHAR ' '
 #define BLOCK_CHAR '#'
 
-inline bool verifyPosRange(int pos_x, int pos_y);
+#include "./pos.h"
+#include "./move.h"
 
-#include "./struct-pos.h"
-#include "./move-rat.h"
-
-bool solveMaze(char maze[N][M], struct Pos rat, struct Pos end_pos);
-void printMaze(char maze[N][M]);
+bool solve_maze(char maze[N][M], struct Pos rat, struct Pos end_pos);
+void print_maze(char maze[N][M]);
 
 int main (void)
 {
@@ -37,13 +35,13 @@ int main (void)
 	};
 
 	defineStartEnd(maze, &init_rat, &end_pos);
-	solveMaze(maze, init_rat, end_pos);
-	printMaze(maze);
+	solve_maze(maze, init_rat, end_pos);
+	print_maze(maze);
 
 	return 0;
 }
 
-bool solveMaze(char maze[N][M], struct Pos rat, struct Pos end_pos)
+bool solve_maze(char maze[N][M], struct Pos rat, struct Pos end_pos)
 {
 	struct Pos next_step;
 
@@ -56,18 +54,15 @@ bool solveMaze(char maze[N][M], struct Pos rat, struct Pos end_pos)
 		{
 			next_step = rat;
 
-			moveRat(maze, &next_step, dir);
+			move_rat(maze, &next_step, dir);
 
 			maze[rat.x][rat.y] = '.';
 
-			if (solveMaze(maze, next_step, end_pos))
+			if (solve_maze(maze, next_step, end_pos))
 			{
 				return true;
 			}
-			else 
-			{
-				maze[rat.x][rat.y] = ' ';
-			}
+			else maze[rat.x][rat.y] = ' ';
 		}
 	}
 
@@ -75,19 +70,15 @@ bool solveMaze(char maze[N][M], struct Pos rat, struct Pos end_pos)
 }
 
 
-void printMaze(char maze[N][M]) 
+void print_maze(char maze[N][M]) 
 {
 	for (int i = 0; i < N; i++)
 	{
 		for (int j = 0; j < M; j++)
-		{
 			printf("%c ", maze[i][j]);
-		}
 
 		printf("\n");
 	}
-
-	return;
 }
 
 /**
