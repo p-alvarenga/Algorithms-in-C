@@ -33,10 +33,10 @@ And then, change the **maze itself**. It is declared inside the `main()`. feel f
 To make the functions more clear and readable, I defined a simple structure:
 
 ```cxx
-struct Pos 
+typedef struct
 {
     int x, y;	
-};
+} Pos;
 ```
 
 Inside the file there is two functions: `bool verifyPosRange(int pos_x, int pos_y)` and `void defineStartEnd(char maze[N][M], struct Pos *start_pos, struct Pos *end_pos)`. The first function is simple, it only verifies if: 
@@ -58,8 +58,7 @@ The second function is as simple as the first, it only finds the end position an
 #define	LEFT  3
 ```
 
-- The <code>check_square_on_dir(char maze[N][M], struct Pos pos, int direction)</code> function just verify if, given the rat position <code>struct Pos po</code>, the rat can move to ```int direction```.
+- The `check_square_on_dir(char (*)[M], Pos, int)` verifies if rat can move to `maze[x][y]`;
+- The function uses the `bool valid_range(int, int)`, defined in `pos.h` to verify if `x` or `y` is out of bounds
 
-- The function uses the <code>bool verifyPosRange(int pos_x, int pos_y)</code>, defined in <code>struct-pos.h</code>, to verify if the given position valid and if the rat <b>can</b> move to that direction, returning <code>true</code> if it can and <code>false</code> if not.
-
-- The other function, <code>bool moveRat(char maze[N][M], struct Pos *rat, int direction)</code> get a pointer to the position of the rat, <code>struct Pos *rat</code> and actually moves it to the direction (if is possible)
+- The other function, `bool move_rat(char (*)[M], Pos, int)` takes direction (as `int`) and moves the rat (`Pos`) using the clockwise system.
