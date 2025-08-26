@@ -1,5 +1,5 @@
-#ifndef MOVE_RAT_H
-#define MOVE_RAT_H
+#ifndef MOVE_RAT__H__
+#define MOVE_RAT__H__
 
 //#define	UP    0
 //#define	RIGHT 1

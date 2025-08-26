@@ -1,29 +1,23 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-#define N 10
-#define M 20
-
-#define START_CHAR 'S'
-#define END_CHAR   'E'
-#define EMPTY_CHAR ' '
-#define BLOCK_CHAR '#'
-
+#include "./maze-config.h"
 #include "./pos.h"
 #include "./move.h" 
 
 bool solve_maze(char maze[N][M], Pos rat, Pos* end_pos);
+
 void print_maze(char maze[N][M]);
+void define_start_end(char maze[N][M], Pos* start, Pos* end);
 
 int main (void)
 {
-	Pos init_rat;
-	Pos *end_pos;
+	Pos rat;
+	Pos *end;
 
 	//printf("%d", sizeof(Pos*));
 
-	char maze[N][M] = 
-	{
+	char maze[N][M] = {
     	{'S', ' ', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#'},
     	{'#', ' ', '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', ' ', ' ', '#'},
     	{'#', ' ', '#', ' ', '#', '#', '#', '#', '#', '#', ' ', '#', '#', '#', ' ', '#', '#', '#', ' ', '#'},
@@ -36,8 +30,8 @@ int main (void)
     	{'#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#'}
 	};
 
-	defineStartEnd(maze, &init_rat, end_pos);
-	solve_maze(maze, init_rat, end_pos);
+	define_start_end(maze, &rat, end);
+	solve_maze(maze, rat, end);
 	print_maze(maze);
 
 	return 0;
@@ -69,6 +63,23 @@ bool solve_maze(char maze[N][M], Pos rat, Pos* end)
 	return false;
 }
 
+void define_start_end(char maze[N][M], Pos *start, Pos *end)
+{
+	for (int i = 0; i < N; i++)
+		for (int j = 0; j < M; j++)
+		{
+			if (maze[i][j] == START_CHAR)
+			{
+				start->x = i;
+				start->y = j;
+			}
+			else if (maze[i][j] == END_CHAR)
+			{
+				end->x = i;
+				end->y = j;
+			}
+		}
+}
 
 void print_maze(char maze[N][M]) 
 {

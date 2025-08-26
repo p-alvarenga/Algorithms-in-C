@@ -6,26 +6,25 @@ It is not a scalable program, therefore, it does not have performance analysis.
 > [!IMPORTANT]
 > To execute your own custom maze, you need to change the following code snippets in order to match your maze
 
-
 <br>
 
-#### Change `char maze[N][M]` size
+#### To Change `char maze[N][M]` size in file `maze-config/`:
 
-```cxx
+```c
 #define N 10
 #define M 20 
 ```
 
-#### Change `char maze[N][M]` describe characters
+#### To Change describe characters in file `maze-config/`: 
 
-```cxx
+```c
 #define START_CHAR 'S'
-#define END_CHAR 'E'
+#define END_CHAR   'E'
 #define EMPTY_CHAR ' '
 #define BLOCK_CHAR '#'
 ```
 
-And then, change the **maze itself**, it is declared inside the `main()`. feel free to use the functions as you like `:)`
+And then, change the **maze itself**. It is declared inside the `main()`. feel free to use the functions as you like `:)`
 
 <br/>
 
@@ -59,7 +58,7 @@ The second function is as simple as the first, it only finds the end position an
 #define	LEFT  3
 ```
 
-- The <code>checkSquareOnDirection(char maze[N][M], struct Pos pos, int direction)</code> function just verify if, given the rat position <code>struct Pos po</code>, the rat can move to ```int direction```.
+- The <code>check_square_on_dir(char maze[N][M], struct Pos pos, int direction)</code> function just verify if, given the rat position <code>struct Pos po</code>, the rat can move to ```int direction```.
 
 - The function uses the <code>bool verifyPosRange(int pos_x, int pos_y)</code>, defined in <code>struct-pos.h</code>, to verify if the given position valid and if the rat <b>can</b> move to that direction, returning <code>true</code> if it can and <code>false</code> if not.
 
