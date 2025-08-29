@@ -8,11 +8,10 @@ It is not a scalable program, therefore, it does not have performance analysis.
 
 ## Using your own maze 
 
-#### Changing `maze size` in `maze-config.h file` 
+#### Changing `maze size` in `maze-config.h` file 
 
 ```c
 // maze-config.h
-
 #define N 10
 #define M 20 
 ```
@@ -21,7 +20,6 @@ It is not a scalable program, therefore, it does not have performance analysis.
 
 ```c
 // maze-config.h
-
 #define START_CHAR 'S'
 #define END_CHAR   'E'
 #define EMPTY_CHAR ' '
@@ -90,4 +88,6 @@ That way, its easier to iterate between directions with
 > [!IMPORTANT]
 >
 > The functions does not uses `Pos*` instead of `Pos` because Pos and Pos* occupies the same amount of memory and referencing (`Pos*`) adds a extra layer of operation. 
+
+
 
