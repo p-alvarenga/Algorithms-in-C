@@ -1,75 +1,64 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-#define N 9
+#include "include/core-methods.h"
+#include "include/cell.h"
 
-#include "./generic-components.h"
-#include "./struct-cell.h"
-#include "./data.h"
+#include "include/data.h"
 
-void printSudoku(short sudoku[N][N]);
-bool solveSudoku(short sudoku[N][N], struct Cell emptyCell);
+#ifndef N 
+	#define N 9 
+#endif
+
+bool solve_sudoku(short (*sudoku)[N], Cell cur);
+void print_sudoku(short (*sudoku)[N]);
 
 int main (void)
 {
-	bool solveReturn = false;
+	int solved, unsolved;
+	solved   = 0; 
+	unsolved = 0;
 
-	short solved = 0, unsolved = 0;
-	short i_sudoku = (27);
-
-	struct Cell init_cell;
-
-	init_cell.x = 0;
-	init_cell.y = 0;
-
-	for (i_sudoku = 0; i_sudoku < DATA_SET_SIZE; i_sudoku++)
+	Cell init = { 0, 0 };
+	
+	for (int i = 0; i < DATA_SET_SIZE; i++)
 	{
-		printSudoku(data[i_sudoku]);
+		print_sudoku(data[i]);
 		
-		verifySudokuFollowRules(data[i_sudoku]) ? solveSudoku(data[i_sudoku], init_cell) : unsolved++;
+		is_valid_sudoku(data[i]) ? solve_sudoku(data[i], init) : unsolved++;
 
-		printSudoku(data[i_sudoku]);
-		printf("> verify sudoku -> data[%i] = %i\n", i_sudoku, verifySolved(data[i_sudoku]));
+		print_sudoku(data[i]);
+		printf("> verify sudoku -> data[%i] = %i\n", i, is_solved(data[i]));
 	}
 
 	return 0;
 }
 
-bool solveSudoku(short sudoku[N][N], struct Cell current_cell)
+bool solve_sudoku(short (*sud)[N], Cell cur)
 {
-	struct Cell it_cell = getNextEmptyCell(sudoku, current_cell);
+	if (sud[cur.x][cur.y] != 0)
+		cur = next_empty_cell(sud, cur);
 
-	if (sudoku[current_cell.x][current_cell.y] != 0)
-		current_cell = it_cell;
+	if (is_solved(sud)) return true;
 
-	if (verifySolved(sudoku))
-		return true;
-
-	for (short n = 1; n <= 9; n++)
+	for (int n = 1; n <= 9; n++)
 	{
-		if (verifyNumberPosition(sudoku, current_cell.x, current_cell.y, n) && (sudoku[current_cell.x][current_cell.y] == 0 || sudoku[it_cell.x][it_cell.y] == 0) )
+		if (verify_pos_n(sud, cur.x, cur.y, n))
 		{
-			if (sudoku[current_cell.x][current_cell.y] == 0)
-			{
-				sudoku[current_cell.x][current_cell.y] = n;
-			}
+			sud[cur.x][cur.y] = n;
 
-			if (solveSudoku(sudoku, it_cell))
+			if (!solve_sudoku(sud, cur))
 			{
-				return true;
+				sud[cur.x][cur.y] = 0;
 			}
-			else
-			{
-				sudoku[current_cell.x][current_cell.y] = 0;
-			}
+			else return true;
 		}
 	}
 
-	sudoku[it_cell.x][it_cell.y] = 0;
 	return false;
 }
 
-void printSudoku(short sudoku[N][N])
+void print_sudoku(short (*sudoku)[N])
 {
 	printf("\n");
 
@@ -87,6 +76,5 @@ void printSudoku(short sudoku[N][N])
 	}
 
 	printf("\n\n");
-
 	return; 
 }

@@ -3,7 +3,11 @@
 
 #define DATA_SET_SIZE 39
 
-short data[DATA_SET_SIZE][N][N] = 
+#ifndef N
+	#define N 9
+#endif
+
+static short data[DATA_SET_SIZE][N][N] = 
 {
 	{
 		{0,9,0,8,6,5,2,0,0},
