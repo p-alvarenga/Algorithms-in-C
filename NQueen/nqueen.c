@@ -2,66 +2,44 @@
 #include <stdbool.h>
 #include <time.h>
 
-#define TESTING 1
 #include "include/config.h"
 #include "include/solve-nqueen.h" 
 //#include "include/verify-solution.h"
 
-void printSolution(char (*board)[N]);
-
-void testing(char (*board)[N]);
+void print_solution(char (*board)[N], double time);
 
 int main (void)
 {
 	char board[N][N];
-	bool valid_solution = false;
+	bool solve = false;
 
 	for (int i = 0; i < N; i++)
 		for (int j = 0; j < N; j++)
 			board[i][j] = EMPTY_CHAR;
 
-#if TESTING == 0
-	printf("~ Calculating N Queen for N = %i ~\n\n", N);
+	printf("~ Calculating N Queen for N = %i...\n\n", N);
 
 	clock_t begin = clock();
-	valid_solution = solveNqueen(board, 0);
+	solve = solve_nqueen(board, 0);
 	clock_t end = clock();
 
-	valid_solution ? printSolution(board) : printf("Solution for [%i x %i] does not exists\n", N, N);
-	
-	printf("\n> Execution Time...: %f [s]\n", (double)(end - begin)/CLOCKS_PER_SEC);
+	if (solve) 
+	{
+		print_solution(board, (double)(end - begin)/CLOCKS_PER_SEC);
+	}
+	else 
+	{
+		printf("Solution for N = %i does not exist\n", N);
+	}
+
 	 //printf("> Verifier Returned: %i\n\n", verifyNqueenSolution(board));
-#else 
-	testing(board); 
-	printSolution(board);
-#endif
 
 	return 0;
 }
 
- // FINDING OPTIMIZED ALGORITHM FOR RIGHT TO LEFT
-
-void testing(char (*board)[N])
+void print_solution(char (*board)[N], double time)
 {
-	int x = N - 20; 
-	int y = N - 10; 
-
-	board[x][y] = '@';
-
-	for (int i = 0; i < N; i++)
-	{
-		int oper_l = i;
-		int oper_r = i - y + x; 
-
-		if (oper_l >= 0 && oper_l < y && oper_r >= 0 && oper_r < y)
-			board[oper_l][oper_r] = 't';
-	}
-
-}
-
-void printSolution(char (*board)[N])
-{
-	printf("> Solution for [%i x %i] board \n", N, N);
+	printf("> Solution for N = %i\n", N);
 
 	for (int i = 0; i < N; i++)
 	{
@@ -70,4 +48,6 @@ void printSolution(char (*board)[N])
 	
 		printf("\n");
 	}
+
+	printf("> Execution time for N = %i: %.4f seconds\n\n", N, time);
 }
