@@ -1,0 +1,6 @@
+N ; SECONDS 
+
+# alg. without defining bool verifyRange(int, int) & using variable to store coordinates instead of calculating everything everytime in verifyPosition(); 
+
+51 ; 13.06 
+52 ; 20.41
